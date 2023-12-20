@@ -6,6 +6,7 @@ public class PickableManager : MonoBehaviour
 {
 
     [SerializeField] private Player player;
+    [SerializeField] private ScoreManager _scoreManager;
 
     private List<Pickable> pickableList = new List<Pickable>();
     // Start is called before the first frame update
@@ -23,12 +24,17 @@ public class PickableManager : MonoBehaviour
             pickableObjects[i].onPicked += OnPickablePicked;
             
         }
-        Debug.Log("Pickable list :" + pickableList.Count);
+        _scoreManager.SetMaxScore(pickableList.Count);
     }
 
     private void OnPickablePicked(Pickable pickable)
     {
         pickableList.Remove(pickable);
+        if(_scoreManager != null)
+        {
+            _scoreManager.AddScore(1);
+        }
+        
         if(pickable.pickableType == PickableType.PowerUP)
         {
             player.PickPowerUp();
