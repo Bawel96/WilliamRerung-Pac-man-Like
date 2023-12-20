@@ -11,6 +11,7 @@ public class ScoreManager : MonoBehaviour
 
     public void UpdateUI()
     {
+        Debug.Log(maxScore);
         scoreText.text = "Score: " + score + " / " + maxScore;
     }
 
@@ -27,10 +28,11 @@ public class ScoreManager : MonoBehaviour
         UpdateUI();
     }
 
+
     private void Start()
     {
-        score = 0;
-        maxScore = 0;
+
+        
         UpdateUI();
     }
 }
